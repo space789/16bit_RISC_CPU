@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<symbol version="7" name="Add16_TwosComp">
+    <symboltype>BLOCK</symboltype>
+    <timestamp>2025-3-6T3:25:27</timestamp>
+    <pin polarity="Input" x="0" y="32" name="Op" />
+    <pin polarity="Input" x="0" y="0" name="Cin" />
+    <pin polarity="Input" x="0" y="-80" name="A(15:0)" />
+    <pin polarity="Input" x="0" y="-32" name="B(15:0)" />
+    <pin polarity="Output" x="384" y="-80" name="S(15:0)" />
+    <pin polarity="Output" x="384" y="32" name="Cout" />
+    <graph>
+        <rect width="256" x="64" y="-100" height="148" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="32" type="pin Op" />
+        <line x2="0" y1="32" y2="32" x1="64" />
+        <line x2="0" y1="0" y2="0" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="0" type="pin Cin" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-80" type="pin A(15:0)" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-32" type="pin B(15:0)" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="312" y="-80" type="pin S(15:0)" />
+        <rect width="64" x="0" y="-44" height="24" />
+        <line x2="0" y1="-32" y2="-32" x1="64" />
+        <rect width="64" x="0" y="-92" height="24" />
+        <line x2="0" y1="-80" y2="-80" x1="64" />
+        <rect width="64" x="320" y="-92" height="24" />
+        <line x2="384" y1="-80" y2="-80" x1="320" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="312" y="32" type="pin Cout" />
+        <line x2="384" y1="32" y2="32" x1="320" />
+        <attrtext style="alignment:BCENTER;fontsize:30;fontname:Arial" attrname="SymbolName" x="192" y="-100" type="symbol" />
+    </graph>
+</symbol>

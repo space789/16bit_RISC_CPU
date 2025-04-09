@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<symbol version="7" name="mux_8to1">
+    <symboltype>BLOCK</symboltype>
+    <timestamp>2025-2-27T6:31:28</timestamp>
+    <pin polarity="Input" x="-16" y="144" name="S(2:0)" />
+    <pin polarity="Input" x="-16" y="-112" name="I0" />
+    <pin polarity="Input" x="-16" y="-80" name="I1" />
+    <pin polarity="Input" x="-16" y="-48" name="I2" />
+    <pin polarity="Input" x="-16" y="-16" name="I3" />
+    <pin polarity="Input" x="-16" y="16" name="I4" />
+    <pin polarity="Input" x="-16" y="48" name="I5" />
+    <pin polarity="Input" x="-16" y="80" name="I6" />
+    <pin polarity="Input" x="-16" y="112" name="I7" />
+    <pin polarity="Output" x="368" y="-112" name="Y" />
+    <graph>
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="56" y="144" type="pin S(2:0)" />
+        <line x2="-16" y1="144" y2="144" x1="48" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="56" y="-112" type="pin I0" />
+        <line x2="-16" y1="-112" y2="-112" x1="48" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="56" y="-80" type="pin I1" />
+        <line x2="-16" y1="-80" y2="-80" x1="48" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="56" y="-48" type="pin I2" />
+        <line x2="-16" y1="-48" y2="-48" x1="48" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="56" y="-16" type="pin I3" />
+        <line x2="-16" y1="-16" y2="-16" x1="48" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="56" y="16" type="pin I4" />
+        <line x2="-16" y1="16" y2="16" x1="48" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="56" y="48" type="pin I5" />
+        <line x2="-16" y1="48" y2="48" x1="48" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="56" y="80" type="pin I6" />
+        <line x2="-16" y1="80" y2="80" x1="48" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="56" y="112" type="pin I7" />
+        <line x2="-16" y1="112" y2="112" x1="48" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="296" y="-112" type="pin Y" />
+        <line x2="368" y1="-112" y2="-112" x1="304" />
+        <rect width="256" x="48" y="-144" height="304" />
+        <attrtext style="alignment:BCENTER;fontsize:30;fontname:Arial" attrname="SymbolName" x="176" y="28" type="symbol" />
+    </graph>
+</symbol>

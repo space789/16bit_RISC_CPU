@@ -1,0 +1,65 @@
+main:
+    // Initialize loop counter k = 0 in R0
+    LLI R0, #0          // k = 0
+    // Set loop limit i = 10 in R1
+    LLI R1, #A         // i = 10
+
+    // Initialize max to 0x0000 in R2 (lowest unsigned value)
+    LLI R2, #0          // load low part 0x00
+    LHI R2, #0          // R2 = 0x0000
+
+    // Initialize min to 0xFFFF in R3 (highest unsigned value)
+    LLI R3, #FF        // load low part 0xFF
+    LHI R3, #FF        // R3 = 0xFFFF
+
+    // Load base address of Data array into R4 (assume Data stored at RAM addresses 20..29)
+    LLI R4, #20         // R4 = base address (20)
+
+loop:
+    CMP R0, R1          // Compare loop counter k with limit i
+    BEQ finish          // If k == 10, finish loop
+
+    LDR R5, [R4, R0]    // Load Data[k] into R5
+
+    // Check if Data[k] > current max (unsigned comparison)
+    CMP R5, R2          // Compare current data with max
+    BCS update_max      // If R5 > max, branch to update max
+
+    // Check if Data[k] < current min (unsigned comparison)
+    CMP R5, R3          // Compare current data with min
+    BCC update_min      // If R5 < min, branch to update min
+
+    BAL next_iter       // Continue to next iteration if no update
+
+update_max:
+    MOV R2, R5          // Update max: R2 = Data[k]
+    // Also check if this value is lower than current min
+    CMP R5, R3
+    BCC update_min      // If Data[k] < min, update min as well
+    BAL next_iter       // Otherwise, continue loop
+
+update_min:
+    MOV R3, R5          // Update min: R3 = Data[k]
+
+next_iter:
+    ADDI R0, R0, #1     // Increment loop counter: k = k + 1
+    BAL loop            // Repeat loop
+
+finish:
+    OutR R2             // Output final max value from R2
+    OutR R3             // Output final min value from R3
+    HLT                 // Halt processor
+
+//================================
+// RAM Data declarations: Data array of 10 unsigned 16-bit numbers
+// (Data values are unsigned integers)
+RAM 20, 0087h
+RAM 21, 0A0Ah
+RAM 22, 1234h
+RAM 23, FF00h
+RAM 24, 00FFh
+RAM 25, 0F0Fh
+RAM 26, 0B0Bh
+RAM 27, 0100h
+RAM 28, 1000h
+RAM 29, 0E0Eh
