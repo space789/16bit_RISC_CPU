@@ -38,9 +38,9 @@ regfile_16bit_8reg UUT (
     .RB_data(RB_data)
 );
 
-// Generate clock signal (20 ns period, 50MHz)
+// Generate clock signal (30 ns period, 33.33MHz)
 always begin
-    #10 CLK = ~CLK; // Toggle clock every 10ns (rising edge every 20ns)
+    #15 CLK = ~CLK; // Toggle clock every 15ns (rising edge every 30ns)
 end
 
 // Test sequence
