@@ -25,9 +25,9 @@ d_ff_16bit UUT (
 	 .rst_n(rst_n)
 );
 
-// Generate clock signal (20 ns period)
+// Generate clock signal (30 ns period = 33.3MHz)
 always begin
-    #10 CLK = ~CLK; // Toggle clock every 10ns (50MHz clock)
+    #15 CLK = ~CLK; // Toggle clock every 15ns
 end
 
 // Test sequence
