@@ -27,18 +27,20 @@ RAM_256x16 UUT (
     .A(A)
 );
 
-// Generate clock signal (20 ns period)
-always begin
-    #10 CLK = ~CLK; // Toggle clock every 10ns (50MHz clock)
+// Generate clock signal (30 ns period)
+initial begin
+    CLK = 0;
+    forever #15 CLK = ~CLK;  // 33.33MHZ
 end
 
 // Test sequence
 initial begin
     // Initialize signals
-    CLK = 0;
     WE = 0;
     D = 16'h0000;
     A = 8'h00;
+	 
+	 repeat(3) @(negedge CLK);
 
     $display("==========================================");
     $display("       Starting 256x16 RAM Test           ");
@@ -49,10 +51,10 @@ initial begin
         A = i;              // Set address
         D = $random;        // Generate random 16-bit data
         WE = 1;             // Enable Write
-        #20;                // Wait for rising edge of clock
+        @(negedge CLK);     // Wait for rising edge of clock
         WE = 0;             // Disable Write
 
-        #20;                // Wait for Read operation
+        @(negedge CLK);     // Wait for Read operation
         expected_O = D;     // Expected output should match the last written value
 
         // Check if read value matches expected value
@@ -67,10 +69,10 @@ initial begin
         A = $random % 256;  // Random address in range 0-255
         D = $random;        // Random data
         WE = 1;             // Enable Write
-        #20;                // Wait for rising edge of clock
+        @(negedge CLK);     // Wait for rising edge of clock
         WE = 0;             // Disable Write
 
-        #20;                // Wait for Read operation
+        @(negedge CLK);     // Wait for Read operation
         expected_O = D;     // Expected output should match the last written value
 
         // Check if read value matches expected value
@@ -84,10 +86,10 @@ initial begin
 	 A = 16'h0027;
 	 D = 16'h0059;
 	 WE = 1;             // Enable Write
-	 #20;                // Wait for rising edge of clock
+	 @(negedge CLK);     // Wait for rising edge of clock
 	 WE = 0;             // Disable Write
 
-	 #20;                // Wait for Read operation
+	 @(negedge CLK);     // Wait for Read operation
 	 expected_O = D;     // Expected output should match the last written value
 
 	 // Check if read value matches expected value
