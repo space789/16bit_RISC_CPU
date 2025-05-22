@@ -66,27 +66,29 @@ task test_enable_with_reset;
         rst_n = 1;
         E = 1;
         expected_Q = 3'b000;
+        @(posedge CLK);
 
-        // 讓計數器從 0 到 3
+        // Let the counter count from 0 to 3
         repeat (3) begin
             @(posedge CLK);
             expected_Q = expected_Q + 1;
             check_output(expected_Q);
         end
 
-        // ** 在這裡插入一個週期的 reset **
+        // Inserting a reset in the middle of the count
         $display("Inserting Reset Mid-Count...");
         rst_n = 0;
         @(negedge CLK);
-        rst_n = 1; // 解除 reset
+        rst_n = 1; // Release reset
+        @(posedge CLK);
 
-        // Reset 之後，計數器應該回到 0
+        // After reset, the counter should return to 0
         expected_Q = 3'b000;
         @(posedge CLK);
 		  expected_Q = expected_Q + 1;
         check_output(expected_Q);
 
-        // 在 reset 後繼續計數
+        // Continue counting after reset
         repeat (7) begin
             @(posedge CLK);
             expected_Q = expected_Q + 1;
@@ -102,7 +104,7 @@ task test_hold;
 
         rst_n = 1;
 
-        // 啟動計數器，讓其計數至 5
+        // Start the counter, let it count to 5
         E = 1;
         expected_Q = 3'b000;
         repeat (5) begin
@@ -111,15 +113,17 @@ task test_hold;
             check_output(expected_Q);
         end
 
-        // 禁用計數 (E = 0)
+        // Disable counting (E = 0)
         @(negedge CLK) begin
             E = 0;
         end
 
-        // 在 E = 0 的狀態下保持不變
+        @(posedge CLK);
+
+        // In the state of E = 0, it remains unchanged
         repeat (5) begin
             @(posedge CLK);
-            check_output(expected_Q); // 狀態不應變化
+            check_output(expected_Q); // The state should not change
         end
     end
 endtask
