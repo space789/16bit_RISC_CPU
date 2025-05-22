@@ -36,7 +36,7 @@ RISC_16bit UUT (
 
 // Clock generation
 initial CLK = 0;
-always #10 CLK = ~CLK;
+always #20 CLK = ~CLK;
 
 // Function: Write instruction to RAM
 task automatic write_mem(input [15:0] addr, input [15:0] data);
