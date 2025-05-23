@@ -14,13 +14,13 @@ reg WR_RAM_E;
 
 // Outputs
 wire [15:0] out_data;
+wire out_flag;
 wire done;
 
 // Variables definition
 integer file, file_status, inst_count;
 reg [15:0] ram_addr;
 reg [15:0] ram_data;
-reg [15:0] last_out_data;
 
 // Instantiate the UUT
 RISC_16bit UUT (
@@ -31,12 +31,13 @@ RISC_16bit UUT (
 	.Ram_data(Ram_data),
 	.WR_RAM_E(WR_RAM_E),
 	.out_data(out_data),
+	.out_flag(out_flag),
 	.done(done)
 );
 
 // Clock generation
 initial CLK = 0;
-always #20 CLK = ~CLK;
+always #1.8 CLK = ~CLK;
 
 // Function: Write instruction to RAM
 task automatic write_mem(input [15:0] addr, input [15:0] data);
@@ -83,17 +84,15 @@ initial begin
 	Ram_addr = 0;
 	Ram_data = 0;
 	WR_RAM_E = 0;
-	last_out_data = 16'h0000;
-	#100;
+	#50	;
 	// Reset signal for one cycle
-	@(posedge CLK);
 	@(posedge CLK);
 	rst_n = 1;
 	
 	// Keep E = 0 and read file into RAM
 	E = 0;
-	#100;
-	read_file("test3.bin");
+	#50;
+	read_file("test_all.bin");
 
 	// After RAM writing is completed, start CPU
 	@(posedge CLK);
@@ -101,17 +100,15 @@ initial begin
 
 	// Wait for CPU execution to complete
 	wait(done === 1'b1);
+	#50;
 	$display("CPU execution done.");
 	$finish;
 end
 
 // Monitor out_data changes and display with timestamp
-always @(out_data) begin
-    if(out_data != last_out_data) begin
-	   #10;
+always @(posedge out_flag) begin
 		$display($time, " ns: out_data changed = %h", out_data);
-		last_out_data = out_data;
-    end
 end
+
 
 endmodule
